@@ -1,0 +1,4 @@
+embeddable-build-status:2.0.2
+pipeline-utility-steps:2.3.0
+timestamper:1.10
+workflow-basic-steps:2.18
