@@ -1,4 +1,5 @@
 embeddable-build-status:2.0.2
+kubernetes:1.19.3
 pipeline-github:2.5
 pipeline-utility-steps:2.3.0
 timestamper:1.10
