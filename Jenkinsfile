@@ -31,31 +31,23 @@ void setGitHubBuildStatus(String context, String message, String state) {
   ])
 }
 
-String getPRVersion() {
-  return "${getReleaseVersion()}-${BRANCH_NAME}-${BUILD_NUMBER}"
-}
-
-String getReleaseVersion() {
-  return sh(returnStdout: true, script: 'jx-release-version')
-}
+def version
 
 pipeline {
   agent {
     label 'jenkins-jx-base'
   }
-  environment {
-    ORG = 'nuxeo'
-  }
   stages {
-    stage('Build and push PR image') {
-      when {
-        branch 'PR-*'
-      }
+    stage('Build and push image') {
       steps {
         setGitHubBuildStatus('build', 'Build and push image', 'PENDING')
         container('jx-base') {
-          withEnv(["VERSION=${getPRVersion()}"]) {
-            echo "Build and push Docker image using version ${VERSION}"
+          script {
+            String releaseVersion = sh(returnStdout: true, script: 'jx-release-version')
+            version = BRANCH_NAME == 'master' ? releaseVersion : releaseVersion + "-${BRANCH_NAME}"
+          }
+          withEnv(["VERSION=${version}"]) {
+            echo "Build and push Docker image nuxeo/platform-jenkinsx:${VERSION}"
             sh """
               envsubst < skaffold.yaml > skaffold.yaml~gen
               skaffold build -f skaffold.yaml
@@ -72,42 +64,31 @@ pipeline {
         }
       }
     }
-    stage('Build and push release image') {
+    stage('Release') {
       when {
         branch 'master'
       }
       steps {
-        setGitHubBuildStatus('build', 'Build and push image', 'PENDING')
+        setGitHubBuildStatus('release', 'Release', 'PENDING')
         container('jx-base') {
-          withEnv(["VERSION=${getReleaseVersion()}"]) {
-            echo "Build and push Docker image using version ${VERSION}"
-            sh """
-              # build and push Docker image
-              envsubst < skaffold.yaml > skaffold.yaml~gen
-              skaffold build -f skaffold.yaml
+          echo "Release version ${version}"
+          sh """
+            # ensure we're not on a detached head
+            git checkout master
 
-              # TODO: check how Skaffold handles cache with two consecutives builds
-              # Ideally, we would only need to tag the ${VERSION} Docker image with the "latest" tag
-              # Something like: docker tag <ORG>/<IMAGE_NAME>:<VERSION> <ORG>/<IMAGE_NAME>:latest
-              VERSION=latest skaffold build -f skaffold.yaml
+            # create the Git credentials
+            jx step git credentials
+            git config credential.helper store
 
-              # ensure we're not on a detached head
-              git checkout master
+            # Git tag
+            jx step tag -v ${version}
 
-              # create the Git credentials
-              jx step git credentials
-              git config credential.helper store
+            # Git release
+            jx step changelog -v v${version}
 
-              # Git tag
-              jx step tag -v ${VERSION}
-
-              # Git release
-              jx step changelog -v v${VERSION}
-
-              # update Jenkins image version in the platform env
-              ./updatebot.sh ${VERSION}
-            """
-          }
+            # update Jenkins image version in the platform env
+            ./updatebot.sh ${version}
+          """
         }
       }
       post {
@@ -115,10 +96,10 @@ pipeline {
           step([$class: 'JiraIssueUpdater', issueSelector: [$class: 'DefaultIssueSelector'], scm: scm])
         }
         success {
-          setGitHubBuildStatus('build', 'Build and push image', 'SUCCESS')
+          setGitHubBuildStatus('release', 'Release', 'SUCCESS')
         }
         failure {
-          setGitHubBuildStatus('build', 'Build and push image', 'FAILURE')
+          setGitHubBuildStatus('release', 'Release', 'FAILURE')
         }
       }
     }
