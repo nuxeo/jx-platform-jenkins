@@ -16,7 +16,7 @@ kind: Config
 build:
   tagPolicy:
     envTemplate:
-      template: "{{.DOCKER_REGISTRY}}/{{.ORG}}/{{.IMAGE_NAME}}:{{.VERSION}}"
+      template: "{{.DOCKER_REGISTRY}}/nuxeo/{{.IMAGE_NAME}}:{{.VERSION}}"
   artifacts:
     - image: platform-jenkinsx
       context: .
@@ -24,11 +24,7 @@ build:
         dockerfile: Dockerfile
         buildContext:
           localDir: {}
-        flags:
-          - --insecure
-          - --insecure-pull
-          - --insecure-registry=${DOCKER_REGISTRY}
         cache:
-          repo: ${DOCKER_REGISTRY}/${ORG}/platform-jenkinsx/cache
+          repo: ${DOCKER_REGISTRY}/nuxeo/platform-jenkinsx/cache
   cluster:
     namespace: platform
