@@ -1,0 +1,8 @@
+unclassified:
+  jiraGlobalConfiguration:
+    sites:
+      - credentialsId: "JIRA_PLUGIN"
+        recordScmChanges: true
+        supportsWikiStyleComment: true
+        updateJiraIssueForAllStatus: true
+        url: "https://jira.nuxeo.com/"
