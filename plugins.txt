@@ -6,4 +6,4 @@ pipeline-github:2.5
 pipeline-utility-steps:2.3.1
 rebuild:1.31
 timestamper:1.10
-workflow-basic-steps:2.18
+workflow-basic-steps:2.15
