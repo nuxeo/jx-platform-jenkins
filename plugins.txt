@@ -1,5 +1,6 @@
 configuration-as-code:1.33
 embeddable-build-status:2.0.3
+github-oauth:0.33
 kubernetes:1.19.3
 pipeline-github:2.5
 pipeline-utility-steps:2.3.1
