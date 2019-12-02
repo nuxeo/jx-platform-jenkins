@@ -1,4 +1,5 @@
 configuration-as-code:1.33
+configuration-as-code-groovy:1.1
 embeddable-build-status:2.0.3
 github-oauth:0.33
 kubernetes:1.19.3
