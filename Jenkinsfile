@@ -44,7 +44,7 @@ pipeline {
         container('jx-base') {
           script {
             String releaseVersion = sh(returnStdout: true, script: 'jx-release-version')
-            version = BRANCH_NAME == 'master' ? releaseVersion : releaseVersion + "-${BRANCH_NAME}"
+            version = BRANCH_NAME == 'master' ? releaseVersion : releaseVersion + "-${BRANCH_NAME}-${BUILD_NUMBER}"
           }
           withEnv(["VERSION=${version}"]) {
             echo "Build and push Docker image nuxeo/platform-jenkinsx:${VERSION}"
