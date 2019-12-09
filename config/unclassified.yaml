@@ -1,4 +1,8 @@
 unclassified:
+  gitHubPluginConfig:
+    configs:
+      - credentialsId: "github_token"
+        name: "nuxeo"
   jiraGlobalConfiguration:
     sites:
       - credentialsId: "JIRA_PLUGIN"
