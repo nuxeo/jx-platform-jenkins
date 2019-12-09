@@ -1,0 +1,5 @@
+security:
+  scriptApproval:
+    approvedSignatures:
+      - staticMethod hudson.Functions printThrowable java.lang.Throwable
+      - method java.util.Properties getProperty java.lang.String
