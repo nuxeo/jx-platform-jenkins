@@ -13,3 +13,5 @@ unclassified:
         timeout: 10
         updateJiraIssueForAllStatus: true
         url: "https://jira.nuxeo.com/"
+  timestamperConfig:
+    allPipelines: true
