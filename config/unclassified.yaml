@@ -6,7 +6,10 @@ unclassified:
   jiraGlobalConfiguration:
     sites:
       - credentialsId: "JIRA_PLUGIN"
+        readTimeout: 30
         recordScmChanges: true
         supportsWikiStyleComment: true
+        threadExecutorNumber: 10
+        timeout: 10
         updateJiraIssueForAllStatus: true
         url: "https://jira.nuxeo.com/"
