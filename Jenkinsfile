@@ -31,6 +31,21 @@ void setGitHubBuildStatus(String context, String message, String state) {
   ])
 }
 
+void skaffoldBuild(String yaml) {
+  sh """
+    envsubst < ${yaml} > ${yaml}~gen
+    skaffold build -f ${yaml}~gen
+  """
+}
+
+void skaffoldBuildRepository() {
+  echo "Build and push Docker images using version ${VERSION}"
+  skaffoldBuild('skaffold.yaml')
+  // building image depending on nuxeo/platform-jenkinsx
+  // waiting for dependent images support in skaffold
+  skaffoldBuild('staging/skaffold.yaml')
+}
+
 def version
 
 pipeline {
@@ -47,11 +62,7 @@ pipeline {
             version = BRANCH_NAME == 'master' ? releaseVersion : releaseVersion + "-${BRANCH_NAME}-${BUILD_NUMBER}"
           }
           withEnv(["VERSION=${version}"]) {
-            echo "Build and push Docker image nuxeo/platform-jenkinsx:${VERSION}"
-            sh """
-              envsubst < skaffold.yaml > skaffold.yaml~gen
-              skaffold build -f skaffold.yaml
-            """
+            skaffoldBuildRepository()
           }
         }
       }
