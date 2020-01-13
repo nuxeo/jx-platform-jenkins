@@ -1,4 +1,4 @@
-configuration-as-code:1.33
+configuration-as-code:1.35
 configuration-as-code-groovy:1.1
 embeddable-build-status:2.0.3
 github-oauth:0.33
@@ -8,4 +8,5 @@ pipeline-utility-steps:2.3.1
 rebuild:1.31
 script-security:1.68
 timestamper:1.10
-workflow-basic-steps:2.15
+workflow-basic-steps:2.19
+workflow-cps:2.78
