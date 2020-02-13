@@ -1,5 +1,6 @@
 unclassified:
   gitHubPluginConfig:
   jiraGlobalConfiguration:
+    - url: "https://jira-preprod.nuxeo.com/"
   timestamperConfig:
     allPipelines: true
