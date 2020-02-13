@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-apiVersion: skaffold/v1beta11
+apiVersion: skaffold/v1
 kind: Config
 build:
   tagPolicy:
@@ -22,9 +22,7 @@ build:
       context: .
       kaniko:
         dockerfile: Dockerfile
-        buildContext:
-          localDir: {}
         cache:
-          repo: ${DOCKER_REGISTRY}/nuxeo/platform-jenkinsx/cache
   cluster:
     namespace: platform
+    pullSecretName: kaniko-secret
