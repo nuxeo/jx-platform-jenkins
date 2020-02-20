@@ -7,7 +7,7 @@ unclassified:
     sites:
       - credentialsId: "JIRA_PLUGIN"
         readTimeout: 30
-        recordScmChanges: true
+        recordScmChanges: false
         supportsWikiStyleComment: true
         threadExecutorNumber: 10
         timeout: 10
