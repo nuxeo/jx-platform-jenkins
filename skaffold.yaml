@@ -26,3 +26,5 @@ build:
   cluster:
     namespace: platform
     pullSecretName: kaniko-secret
+    dockerConfig:
+      secretName: jenkins-docker-cfg
