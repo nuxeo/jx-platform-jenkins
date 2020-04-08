@@ -8,6 +8,7 @@ pipeline-github:2.5
 pipeline-utility-steps:2.3.1
 rebuild:1.31
 script-security:1.68
+text-finder:1.12
 timestamper:1.10
 workflow-basic-steps:2.19
 workflow-cps:2.78
