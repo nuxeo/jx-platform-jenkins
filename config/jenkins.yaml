@@ -1,4 +1,15 @@
 jenkins:
+  authorizationStrategy:
+    github:
+      adminUserNames: "ataillefer, bdelbosc, kevinleturc, NourNuxeo, troger"
+      allowAnonymousJobStatusPermission: false
+      allowAnonymousReadPermission: false
+      allowCcTrayPermission: false
+      allowGithubWebHookPermission: true
+      authenticatedUserCreateJobPermission: false
+      authenticatedUserReadPermission: false
+      organizationNames: "nuxeo"
+      useRepositoryPermissions: true
   securityRealm:
     github:
       githubWebUri: "https://github.com"
