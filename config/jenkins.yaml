@@ -1,7 +1,7 @@
 jenkins:
   authorizationStrategy:
     github:
-      adminUserNames: "admin, ataillefer, bdelbosc, kevinleturc, NourNuxeo, troger"
+      adminUserNames: "admin, ataillefer, atchertchian, bdelbosc, kevinleturc, NourNuxeo, troger"
       allowAnonymousJobStatusPermission: false
       allowAnonymousReadPermission: false
       allowCcTrayPermission: false
