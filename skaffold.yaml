@@ -23,6 +23,10 @@ build:
       kaniko:
         dockerfile: Dockerfile
         cache:
+        buildArgs:
+          BUILD_TAG: "{{.BUILD_TAG}}"
+          SCM_REF: "{{.GIT_COMMIT}}"
+          VERSION: "{{.VERSION}}"
   cluster:
     namespace: platform
     pullSecretName: kaniko-secret
