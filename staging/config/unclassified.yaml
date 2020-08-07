@@ -3,5 +3,5 @@ unclassified:
   jiraGlobalConfiguration:
     sites:
       - url: "https://jira-preprod.nuxeo.com/"
-  timestamperConfig:
+  timestamper:
     allPipelines: true
