@@ -38,6 +38,8 @@ LABEL org.nuxeo.version=$VERSION
 LABEL org.nuxeo.version.jenkins=$JENKINS_IMAGE_VERSION
 LABEL org.nuxeo.version.jenkinsx=$JENKINS_X_IMAGE_VERSION
 
+USER root
+RUN apt-get update && apt-get install -y vim
 USER jenkins
 
 ENV JAVA_OPTS "$JAVA_OPTS -Dhudson.security.csrf.DefaultCrumbIssuer.EXCLUDE_SESSION_ID=true"
