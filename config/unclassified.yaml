@@ -13,5 +13,8 @@ unclassified:
         timeout: 10
         updateJiraIssueForAllStatus: true
         url: "https://jira.nuxeo.com/"
+  slackNotifier:
+    teamDomain: "nuxeo"
+    tokenCredentialId: "slack-token"
   timestamper:
     allPipelines: true
