@@ -29,6 +29,7 @@ pipeline-utility-steps:2.6.1
 plain-credentials:1.7
 rebuild:1.31
 script-security:1.74
+slack:2.41
 text-finder:1.15
 timestamper:1.11.5
 token-macro:2.12
