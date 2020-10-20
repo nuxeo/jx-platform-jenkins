@@ -24,6 +24,8 @@ jenkins:
             value: "docker-arender.packages.nuxeo.com"
           - key: "DOCKER_REGISTRY"
             value: "docker.platform.dev.nuxeo.com"
+          - key: "DRY_RUN"
+            value: "true"
           - key: "PRIVATE_DOCKER_REGISTRY"
             value: "docker-private.packages.nuxeo.com"
           - key: "PUBLIC_DOCKER_REGISTRY"
