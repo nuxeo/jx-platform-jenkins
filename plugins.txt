@@ -2,6 +2,7 @@ artifactory:3.7.3
 authentication-tokens:1.4
 blueocean:1.23.3
 bouncycastle-api:2.18
+branch-api:2.6.2
 cloudbees-folder:6.14
 configuration-as-code:1.43
 configuration-as-code-groovy:1.1
