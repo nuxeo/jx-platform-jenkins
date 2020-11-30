@@ -7,7 +7,11 @@ groovy:
           return;
       };
       def kubernetesCloud = Jenkins.instance.clouds.get(0);
+      kubernetesCloud.setContainerCap(10000)
 
       def podLabels = kubernetesCloud.getPodLabels();
-      podLabels.addAll([new PodLabel('team', 'platform'), new PodLabel('resource', 'pod'), new PodLabel('usage', 'build')]);
-      kubernetesCloud.setPodLabels(podLabels);
+      def customLabels = [new PodLabel('team', 'platform'), new PodLabel('resource', 'pod'), new PodLabel('usage', 'build')];
+      if (customLabels.disjoint(podLabels)) {
+        podLabels.addAll(customLabels);
+        kubernetesCloud.setPodLabels(podLabels);
+      }
