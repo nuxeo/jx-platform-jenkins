@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-ARG JENKINS_IMAGE_VERSION=lts
+ARG JENKINS_IMAGE_VERSION=2.249.3-lts
 ARG JENKINS_X_IMAGE_VERSION=0.0.81
 
 # ------------------------------------------------------------------------
